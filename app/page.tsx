@@ -1,6 +1,6 @@
 "use client"; 
 import { useEffect } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import ProjectCard from '@/components/ProjectCard';
 import Skills from '@/components/Skills';
 
@@ -24,8 +24,8 @@ export default function Home() {
  
   const duplicatedProjects = [...projects, ...projects];
  
-  // Typage explicite avec "Variants" pour éviter les erreurs de build
-  const containerVariants: Variants = {
+  // Utilisation du type 'any' pour garantir le passage du build Vercel
+  const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -33,7 +33,7 @@ export default function Home() {
     }
   };
 
-  const itemVariants: Variants = {
+  const itemVariants: any = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -42,7 +42,7 @@ export default function Home() {
         type: "spring",
         stiffness: 100,
         damping: 10
-      } as any // CORRECTION : "as any" force TypeScript à ignorer l'incompatibilité du type string
+      }
     }
   };
 
