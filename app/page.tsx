@@ -5,11 +5,14 @@ import ProjectCard from '@/components/ProjectCard';
 import Skills from '@/components/Skills';
 
 export default function Home() {
+  // Logique pour forcer le scroll en haut au rechargement
   useEffect(() => {
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
+    if (typeof window !== 'undefined') {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
     }
-    window.scrollTo(0, 0);
   }, []);
 
   const projects = [  
@@ -35,7 +38,7 @@ export default function Home() {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 10
       }
@@ -44,13 +47,13 @@ export default function Home() {
 
   return (
     <div className="w-full overflow-hidden bg-[#2C2420]">
-      {/* SECTION ACCUEIL */}  
+      {/* SECTION ACCUEIL */}
       <section className="py-40 text-center px-4">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={containerVariants} 
-          className="max-w-6xl mx-auto" // Augmenté pour laisser de la place au nom
+          className="max-w-6xl mx-auto"
         >
           {/* NOM SUR UNE SEULE LIGNE */}
           <motion.h1 
@@ -59,13 +62,13 @@ export default function Home() {
           >
             Ercias Audrey Dohou
           </motion.h1>
- 
+
           <div className="mt-10 max-w-4xl mx-auto">
             <motion.p 
               variants={itemVariants}
               className="text-[#FAF5F0] text-xl md:text-3xl italic font-light leading-relaxed"
             > 
-              Architecte de solutions <span className="text-white not-italic font-medium underline decoration-[#6F4E37] underline-offset-8">Fullstack</span> je transforme vos idées en solutions numériques épurées et performante. 
+              Architecte de solutions <span className="text-white not-italic font-medium underline decoration-[#6F4E37] underline-offset-8">Fullstack</span>, je transforme vos idées en solutions numériques épurées et performantes. 
               De la réflexion visuelle au déploiement technique.
             </motion.p>
             
@@ -112,6 +115,6 @@ export default function Home() {
       <div className="max-w-[1400px] mx-auto px-6 py-32">
         <Skills />
       </div>
-    </div>                                          
+    </div>                                                   
   );
 }
