@@ -1,43 +1,90 @@
-"use client"; // Obligatoire pour utiliser useEffect
+"use client"; 
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import ProjectCard from '@/components/ProjectCard';
 import Skills from '@/components/Skills';
 
 export default function Home() {
-  // Logique pour forcer le scroll en haut au rechargement
   useEffect(() => {
-    // 1. Désactive la restauration automatique du scroll du navigateur
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    // 2. Scroll tout en haut immédiatement
     window.scrollTo(0, 0);
   }, []);
 
-  const projects = [
+  const projects = [  
     { title: "E-commerce", desc: "Plateforme de vente moderne.", tags: ["NEXT.JS", "TAILWIND"] },
     { title: "Portfolio", desc: "Design minimaliste.", tags: ["REACT", "FRAMER"] },
-    { title: "Google Keep", desc: "Clonage d'interface.", tags: ["ANGULAR", "FRAMER"] },
+    { title: "Google Keep", desc: "Clonage d'interface.", tags: ["ANGULAR", "FRAMER"] }, 
     { title: "Gestâche", desc: "Gestion de tâche.", tags: ["REACT", "FRAMER"] }
   ];
-
-  // On duplique la liste pour la boucle infinie
+ 
   const duplicatedProjects = [...projects, ...projects];
+ 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
 
   return (
     <div className="w-full overflow-hidden bg-[#2C2420]">
-      {/* SECTION ACCUEIL */}
-      <section className="py-32 text-center px-4">
-        <h1 className="text-5xl md:text-7xl font-bold text-[#FCF9F5]">Ercias Audrey Dohou</h1>
-        <p className="mt-4 text-[#6F4E37] text-lg md:text-xl italic font-light">
-          Développeur & Designer d'interfaces minimalistes.
-        </p>
+      {/* SECTION ACCUEIL */}  
+      <section className="py-40 text-center px-4">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants} 
+          className="max-w-6xl mx-auto" // Augmenté pour laisser de la place au nom
+        >
+          {/* NOM SUR UNE SEULE LIGNE */}
+          <motion.h1 
+            variants={itemVariants} 
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[#FCF9F5] whitespace-nowrap tracking-tight"
+          >
+            Ercias Audrey Dohou
+          </motion.h1>
+ 
+          <div className="mt-10 max-w-4xl mx-auto">
+            <motion.p 
+              variants={itemVariants}
+              className="text-[#FAF5F0] text-xl md:text-3xl italic font-light leading-relaxed"
+            > 
+              Architecte de solutions <span className="text-white not-italic font-medium underline decoration-[#6F4E37] underline-offset-8">Fullstack</span> je transforme vos idées en solutions numériques épurées et performante. 
+              De la réflexion visuelle au déploiement technique.
+            </motion.p>
+            
+            <motion.p 
+              variants={itemVariants}  
+              className="mt-10 flex items-center justify-center gap-3 text-[#FAF5F0] opacity-80 font-medium uppercase text-[11px] md:text-sm tracking-[0.4em]"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FAF5F0] opacity-40"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FAF5F0]"></span> 
+              </span>
+              Disponible pour donner vie à vos nouveaux projets
+            </motion.p>
+          </div>
+        </motion.div>
       </section>
 
-      {/* SECTION PROJETS - DÉFILEMENT AUTOMATIQUE (MARQUEE) */}
+      {/* SECTION PROJETS */}
       <section id="projets" className="py-24 overflow-hidden border-y border-[#6F4E37]/10">
-        
-        {/* TITRE SUBTIL MAIS PRÉSENT */}
         <div className="flex flex-col items-center mb-16 text-center px-4">
           <h2 className="text-sm md:text-base font-bold uppercase tracking-[0.5em] text-[#FCF9F5] opacity-70">
             Projets Sélectionnés
@@ -45,7 +92,6 @@ export default function Home() {
           <div className="h-1 w-20 bg-blue-600 rounded-full mt-4"></div>
         </div>
 
-        {/* Le rail d'animation */}
         <div className="relative flex overflow-hidden group">
           <div className="flex animate-marquee gap-8 py-10">
             {duplicatedProjects.map((proj, i) => (
@@ -62,10 +108,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. SECTION SKILLS */}
+      {/* SECTION SKILLS */}
       <div className="max-w-[1400px] mx-auto px-6 py-32">
         <Skills />
       </div>
-    </div>                                      
+    </div>                                          
   );
 }
