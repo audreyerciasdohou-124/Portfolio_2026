@@ -24,7 +24,7 @@ export default function Home() {
  
   const duplicatedProjects = [...projects, ...projects];
  
-  // Utilisation du type 'any' pour garantir le passage du build Vercel
+  // Correction définitive : Typage en 'any' pour bypasser les erreurs de build TypeScript
   const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: {
