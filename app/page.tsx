@@ -104,7 +104,7 @@ export default function Home() {
 
           <div className="flex animate-marquee gap-6 md:gap-10 py-10">
             {duplicatedProjects.map((proj, i) => (
-              <div key={i} className="min-w-[290px] md:min-w-[450px]">
+              <div key={i} className="min-w-[260px] md:min-w-[450px]">
                 <ProjectCard 
                   index={i} 
                   title={proj.title} 

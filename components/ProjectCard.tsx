@@ -20,8 +20,8 @@ const ProjectCard = ({ title, description, tags, index }: ProjectProps) => {
         delay: index * 0.1 
       }}
       // CHANGEMENT : p-5 sur mobile, p-8 sur desktop
-      className="bg-[#F3EEE7] rounded-[24px] p-5 md:p-8 border border-[#2C2420]/5 
-                 hover:shadow-xl transition-all duration-500 group h-full flex flex-col justify-between"
+      className="bg-[#F3EEE7] rounded-[20px] p-4 md:p-8 border border-[#2C2420]/5 
+           hover:shadow-xl transition-all duration-500 group h-full flex flex-col justify-between"
     >
       <div className="space-y-6">
         <div className="aspect-[4/3] bg-[#E8E2D9] rounded-[16px] overflow-hidden relative">
@@ -42,12 +42,12 @@ const ProjectCard = ({ title, description, tags, index }: ProjectProps) => {
           </div>
           
           {/* CHANGEMENT : text-xl sur mobile pour éviter que ça casse */}
-          <h3 className="text-xl md:text-3xl font-bold text-[#2C2420] tracking-tight italic">
-            {title}
-          </h3>
-          <p className="text-[#6F4E37]/80 text-xs md:text-sm leading-relaxed font-light line-clamp-2">
-            {description}
-          </p>
+            <h3 className="text-lg md:text-3xl font-bold text-[#2C2420] tracking-tight italic">
+              {title}
+            </h3>
+            <p className="text-[#6F4E37]/80 text-[11px] md:text-sm leading-relaxed font-light line-clamp-2">
+              {description}
+            </p>
         </div>
       </div>
       
