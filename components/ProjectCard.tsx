@@ -19,41 +19,43 @@ const ProjectCard = ({ title, description, tags, index }: ProjectProps) => {
         ease: [0.215, 0.61, 0.355, 1], 
         delay: index * 0.1 
       }}
-      // CHANGEMENT : p-5 sur mobile, p-8 sur desktop
-      className="bg-[#F3EEE7] rounded-[20px] p-4 md:p-8 border border-[#2C2420]/5 
-           hover:shadow-xl transition-all duration-500 group h-full flex flex-col justify-between"
+      // CHANGEMENT : p-3 sur mobile (très compact) et arrondi réduit
+      className="bg-[#F3EEE7] rounded-[16px] p-3 md:p-8 border border-[#2C2420]/5 
+                 hover:shadow-xl transition-all duration-500 group h-full flex flex-col justify-between"
     >
-      <div className="space-y-6">
-        <div className="aspect-[4/3] bg-[#E8E2D9] rounded-[16px] overflow-hidden relative">
+      <div className="space-y-3 md:space-y-6">
+        {/* CHANGEMENT : aspect-[16/9] sur mobile pour gagner de la hauteur */}
+        <div className="aspect-[16/9] md:aspect-[4/3] bg-[#E8E2D9] rounded-[12px] overflow-hidden relative">
           <div className="w-full h-full flex items-center justify-center text-[#6F4E37]/20 
-                        group-hover:scale-105 transition-transform duration-[1500ms] ease-out font-mono text-[10px]">
-            [ IMAGE_PROJET ]
+                          group-hover:scale-105 transition-transform duration-[1500ms] ease-out font-mono text-[8px] md:text-[10px]">
+            [ IMAGE ]
           </div>
         </div>
         
-        <div className="space-y-4">
-          <div className="flex flex-wrap gap-2"> {/* flex-wrap ajouté pour les tags */}
+        <div className="space-y-2 md:space-y-4">
+          <div className="flex flex-wrap gap-1 md:gap-2">
             {tags.map((tag, i) => (
-              <span key={i} className="text-[8px] md:text-[9px] px-2 py-1 border border-[#6F4E37]/20 
-                                     text-[#6F4E37] rounded-full uppercase font-bold tracking-[0.1em]">
+              <span key={i} className="text-[7px] md:text-[9px] px-1.5 py-0.5 border border-[#6F4E37]/20 
+                                     text-[#6F4E37] rounded-full uppercase font-bold tracking-wider">
                 {tag}
               </span>
             ))}
           </div>
           
-          {/* CHANGEMENT : text-xl sur mobile pour éviter que ça casse */}
-            <h3 className="text-lg md:text-3xl font-bold text-[#2C2420] tracking-tight italic">
-              {title}
-            </h3>
-            <p className="text-[#6F4E37]/80 text-[11px] md:text-sm leading-relaxed font-light line-clamp-2">
-              {description}
-            </p>
+          {/* CHANGEMENT : text-base (plus petit) sur mobile */}
+          <h3 className="text-base md:text-3xl font-bold text-[#2C2420] tracking-tight italic">
+            {title}
+          </h3>
+          <p className="text-[#6F4E37]/80 text-[10px] md:text-sm leading-snug font-light line-clamp-2">
+            {description}
+          </p>
         </div>
       </div>
       
-      <div className="pt-6">
-        <div className="w-10 h-10 rounded-full border border-[#6F4E37]/20 flex items-center justify-center 
-                      group-hover:bg-[#2C2420] group-hover:text-white transition-all duration-300">
+      {/* CHANGEMENT : Bouton plus petit sur mobile */}
+      <div className="pt-3 md:pt-6">
+        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-[#6F4E37]/20 flex items-center justify-center 
+                      group-hover:bg-[#2C2420] group-hover:text-white transition-all duration-300 text-xs md:text-base">
           →
         </div>
       </div>

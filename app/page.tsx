@@ -57,7 +57,6 @@ export default function Home() {
           variants={containerVariants} 
           className="max-w-6xl mx-auto"
         >
-          {/* NOM : Adapté pour ne pas dépasser sur mobile */}
           <motion.h1 
             variants={itemVariants} 
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[#FCF9F5] tracking-tight leading-[1.1] whitespace-normal md:whitespace-nowrap"
@@ -87,24 +86,24 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* SECTION PROJETS : Amélioration du défilement mobile */}
-      <section id="projets" className="py-20 md:py-32 overflow-hidden border-y border-[#6F4E37]/10 bg-[#2C2420]">
-        <div className="flex flex-col items-center mb-12 md:mb-20 text-center px-4">
-          <h2 className="text-xs md:text-base font-bold uppercase tracking-[0.4em] text-[#FCF9F5] opacity-60">
+      {/* SECTION PROJETS : Version Mini-Cards */}
+      <section id="projets" className="py-16 md:py-32 overflow-hidden border-y border-[#6F4E37]/10 bg-[#2C2420]">
+        <div className="flex flex-col items-center mb-10 md:mb-20 text-center px-4">
+          <h2 className="text-[10px] md:text-base font-bold uppercase tracking-[0.4em] text-[#FCF9F5] opacity-60">
             Projets Sélectionnés
           </h2>
-          <div className="h-1 w-12 md:w-20 bg-blue-600 rounded-full mt-4"></div>
+          <div className="h-1 w-10 md:w-20 bg-blue-600 rounded-full mt-3"></div>
         </div>
 
-        {/* Conteneur du Marquee avec dégradés sur les côtés pour le style */}
         <div className="relative flex overflow-hidden group">
-            {/* Effet de fondu sur les bords (optionnel mais recommandé) */}
-            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#2C2420] to-transparent z-10 pointer-events-none hidden md:block"></div>
-            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#2C2420] to-transparent z-10 pointer-events-none hidden md:block"></div>
+            <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#2C2420] to-transparent z-10 pointer-events-none hidden md:block"></div>
+            <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#2C2420] to-transparent z-10 pointer-events-none hidden md:block"></div>
 
-          <div className="flex animate-marquee gap-6 md:gap-10 py-10">
+          {/* gap-4 et py-6 pour réduire la hauteur totale de la section sur mobile */}
+          <div className="flex animate-marquee gap-4 md:gap-10 py-6 md:py-10">
             {duplicatedProjects.map((proj, i) => (
-              <div key={i} className="min-w-[260px] md:min-w-[450px]">
+              /* CHANGEMENT : min-w-[210px] pour des cartes plus petites sur mobile */
+              <div key={i} className="min-w-[210px] md:min-w-[450px]">
                 <ProjectCard 
                   index={i} 
                   title={proj.title} 
@@ -118,7 +117,7 @@ export default function Home() {
       </section>
 
       {/* SECTION SKILLS */}
-      <section id="competences" className="max-w-[1400px] mx-auto px-6 py-24 md:py-40">
+      <section id="competences" className="max-w-[1400px] mx-auto px-6 py-20 md:py-40">
         <Skills />
       </section>
     </main>                                                 
