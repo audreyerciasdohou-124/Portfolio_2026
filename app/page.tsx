@@ -42,12 +42,10 @@ export default function Home() {
     }
   ];
  
-  // On quadruple pour être sûr que le défilement est infini sans saut visuel
   const duplicatedProjects = [...projects, ...projects, ...projects, ...projects];
  
   return (
     <main className="w-full overflow-hidden bg-[#2C2420]">
-      {/* SECTION ACCUEIL */}
       <section id="accueil" className="relative min-h-[80vh] flex items-center justify-center py-20 md:py-40 text-center px-6">
         <motion.div initial={{opacity:0}} animate={{opacity:1}} className="max-w-6xl mx-auto">
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[#FCF9F5] tracking-tight leading-[1.1]">
@@ -61,7 +59,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* SECTION PROJETS */}
       <section id="projets" className="py-16 md:py-32 overflow-hidden border-y border-[#6F4E37]/10 bg-[#2C2420]">
         <div className="flex flex-col items-center mb-10 text-center px-4">
           <h2 className="text-[10px] md:text-base font-bold uppercase tracking-[0.4em] text-[#FCF9F5] opacity-60">
@@ -70,20 +67,11 @@ export default function Home() {
           <div className="h-1 w-10 bg-blue-600 rounded-full mt-3"></div>
         </div>
 
-        {/* Conteneur principal avec masque de débordement */}
-        <div className="relative flex overflow-hidden">
-          <div 
-            className="flex animate-marquee flex-nowrap gap-6 md:gap-10 py-6"
-            style={{ 
-              willChange: 'transform',
-              backfaceVisibility: 'hidden'
-            }}
-          >
+        <div className="relative flex overflow-hidden group">
+          <div className="flex animate-marquee flex-nowrap gap-6 md:gap-10 py-6">
             {duplicatedProjects.map((proj, i) => (
-              <div 
-                key={i} 
-                className="min-w-[280px] md:min-w-[450px] shrink-0" 
-              >
+              /* MODIFICATION ICI : Largeur forcée à 220px sur mobile */
+              <div key={i} className="w-[220px] md:w-[450px] shrink-0">
                 <ProjectCard 
                   index={i} 
                   title={proj.title} 
@@ -97,7 +85,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION SKILLS */}
       <section id="competences" className="max-w-[1400px] mx-auto px-6 py-20 md:py-40">
         <Skills />
       </section>

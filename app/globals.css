@@ -23,21 +23,20 @@ body {
   background-size: cover;
 }
 
-/* ANIMATION MARQUEE */
+/* ANIMATION MARQUEE OPTIMISÉE */
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @layer utilities {
   .animate-marquee {
     display: flex;
     width: max-content;
-    animation: marquee 40s linear infinite;
+    animation: marquee 30s linear infinite; /* 30s pour une vitesse agréable */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .animate-marquee:hover {
@@ -54,31 +53,6 @@ body {
   }
 }
 
-/*Pour éviter que la page ne saute brusquement en quitant "contacter moi" */
 html {
   scroll-behavior: smooth;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* Ajusté pour un bouclage parfait */
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
-  /* Les 3 lignes pour la fluidité mobile : */
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Pause au survol (optionnel, mais propre) */
-.group:hover .animate-marquee {
-  animation-play-state: paused;
 }
