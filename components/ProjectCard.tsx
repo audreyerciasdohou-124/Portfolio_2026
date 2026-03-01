@@ -20,12 +20,12 @@ const ProjectCard = ({ title, description, tags, index, imageUrl }: ProjectProps
         ease: [0.215, 0.61, 0.355, 1], 
         delay: index * 0.1 
       }}
-      className="bg-[#F3EEE7] rounded-[16px] p-3 md:p-8 border border-[#2C2420]/5 
+      className="bg-[#F3EEE7] rounded-[16px] p-4 md:p-8 border border-[#2C2420]/5 
                  hover:shadow-xl transition-all duration-500 group h-full flex flex-col justify-between"
     >
-      <div className="space-y-3 md:space-y-6">
+      <div className="space-y-4 md:space-y-6">
         {/* Utilisation de <img> pour éviter les erreurs de configuration Next.js */}
-        <div className="aspect-[16/9] md:aspect-[4/3] bg-[#E8E2D9] rounded-[12px] overflow-hidden relative">
+        <div className="aspect-[16/9] md:aspect-[4/3] bg-[#E8E2D9] rounded-[14px] overflow-hidden relative">
           <img 
             src={imageUrl} 
             alt={title}
@@ -43,10 +43,10 @@ const ProjectCard = ({ title, description, tags, index, imageUrl }: ProjectProps
             ))}
           </div>
           
-          <h3 className="text-base md:text-3xl font-bold text-[#2C2420] tracking-tight italic">
+          <h3 className="text-lg md:text-3xl font-bold text-[#2C2420] tracking-tight italic">
             {title}
           </h3>
-          <p className="text-[#6F4E37]/80 text-[10px] md:text-sm leading-snug font-light line-clamp-2">
+          <p className="text-[#6F4E37]/80 text-[11px] md:text-sm leading-snug font-light line-clamp-2">
             {description}
           </p>
         </div>

@@ -72,7 +72,7 @@ export default function Home() {
         <div className="relative flex overflow-hidden">
           <div className="flex animate-marquee gap-4 md:gap-10 py-6">
             {duplicatedProjects.map((proj, i) => (
-              <div key={i} className="min-w-[210px] md:min-w-[450px]">
+              <div key={i} className="min-w-[280px] md:min-w-[450px]">
                 <ProjectCard 
                   index={i} 
                   title={proj.title} 
