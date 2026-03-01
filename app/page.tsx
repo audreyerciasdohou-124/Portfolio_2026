@@ -6,7 +6,6 @@ import ProjectCard from '@/components/ProjectCard';
 import Skills from '@/components/Skills';
 
 export default function Home() {
-  // Logique pour forcer le scroll en haut au rechargement
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if ('scrollRestoration' in history) {
@@ -17,98 +16,69 @@ export default function Home() {
   }, []);
 
   const projects = [  
-    { title: "E-commerce", desc: "Plateforme de vente moderne.", tags: ["NEXT.JS", "TAILWIND"] },
-    { title: "Portfolio", desc: "Design minimaliste.", tags: ["REACT", "FRAMER"] },
-    { title: "Google Keep", desc: "Clonage d'interface.", tags: ["ANGULAR", "FRAMER"] }, 
-    { title: "Gestâche", desc: "Gestion de tâche.", tags: ["REACT", "FRAMER"] }
+    { 
+      title: "E-commerce", 
+      desc: "Boutique haut de gamme au design épuré.", 
+      tags: ["NEXT.JS", "STRIPE"],
+      imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop" 
+    },
+    { 
+      title: "Portfolio", 
+      desc: "Mon univers créatif et technique.", 
+      tags: ["REACT", "FRAMER"],
+      imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" 
+    },
+    { 
+      title: "Google Keep", 
+      desc: "Prise de notes intelligente et rapide.", 
+      tags: ["ANGULAR", "FIREBASE"],
+      imageUrl: "https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=800&auto=format&fit=crop" 
+    }, 
+    { 
+      title: "Gestâche", 
+      desc: "Planification et suivi de productivité.", 
+      tags: ["REACT", "NODE"],
+      imageUrl: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=800&auto=format&fit=crop" 
+    }
   ];
  
   const duplicatedProjects = [...projects, ...projects, ...projects];
  
-  // Configuration des animations
-  const containerVariants: any = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
-  const itemVariants: any = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  };
-
   return (
     <main className="w-full overflow-hidden bg-[#2C2420]">
       {/* SECTION ACCUEIL */}
-      <section className="relative min-h-[80vh] flex items-center justify-center py-20 md:py-40 text-center px-6">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants} 
-          className="max-w-6xl mx-auto"
-        >
-          <motion.h1 
-            variants={itemVariants} 
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[#FCF9F5] tracking-tight leading-[1.1] whitespace-normal md:whitespace-nowrap"
-          >
+      <section id="accueil" className="relative min-h-[80vh] flex items-center justify-center py-20 md:py-40 text-center px-6">
+        <motion.div initial={{opacity:0}} animate={{opacity:1}} className="max-w-6xl mx-auto">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[#FCF9F5] tracking-tight leading-[1.1]">
             Ercias Audrey Dohou
-          </motion.h1>
-
+          </h1>
           <div className="mt-8 md:mt-12 max-w-4xl mx-auto">
-            <motion.p 
-              variants={itemVariants}
-              className="text-[#FAF5F0] text-lg md:text-3xl italic font-light leading-relaxed px-2"
-            > 
-              Architecte de solutions <span className="text-white not-italic font-medium underline decoration-[#6F4E37] underline-offset-8">Fullstack</span>, je transforme vos idées en solutions numériques épurées et performantes.
-            </motion.p>
-            
-            <motion.p 
-              variants={itemVariants}  
-              className="mt-10 md:mt-16 flex items-center justify-center gap-3 text-[#FAF5F0] opacity-80 font-medium uppercase text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.4em]"
-            >
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FAF5F0] opacity-40"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FAF5F0]"></span> 
-              </span>
-              Disponible pour de nouveaux projets
-            </motion.p>
+            <p className="text-[#FAF5F0] text-lg md:text-3xl italic font-light leading-relaxed"> 
+              Architecte de solutions <span className="text-white not-italic font-medium underline decoration-[#6F4E37] underline-offset-8">Fullstack</span>, je transforme vos idées en solutions numériques épurées.
+            </p>
           </div>
         </motion.div>
       </section>
 
-      {/* SECTION PROJETS : Version Mini-Cards */}
+      {/* SECTION PROJETS */}
       <section id="projets" className="py-16 md:py-32 overflow-hidden border-y border-[#6F4E37]/10 bg-[#2C2420]">
-        <div className="flex flex-col items-center mb-10 md:mb-20 text-center px-4">
+        <div className="flex flex-col items-center mb-10 text-center px-4">
           <h2 className="text-[10px] md:text-base font-bold uppercase tracking-[0.4em] text-[#FCF9F5] opacity-60">
             Projets Sélectionnés
           </h2>
-          <div className="h-1 w-10 md:w-20 bg-blue-600 rounded-full mt-3"></div>
+          <div className="h-1 w-10 bg-blue-600 rounded-full mt-3"></div>
         </div>
 
-        <div className="relative flex overflow-hidden group">
-            <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#2C2420] to-transparent z-10 pointer-events-none hidden md:block"></div>
-            <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#2C2420] to-transparent z-10 pointer-events-none hidden md:block"></div>
-
-          {/* gap-4 et py-6 pour réduire la hauteur totale de la section sur mobile */}
-          <div className="flex animate-marquee gap-4 md:gap-10 py-6 md:py-10">
+        <div className="relative flex overflow-hidden">
+          <div className="flex animate-marquee gap-4 md:gap-10 py-6">
             {duplicatedProjects.map((proj, i) => (
-              /* CHANGEMENT : min-w-[210px] pour des cartes plus petites sur mobile */
               <div key={i} className="min-w-[210px] md:min-w-[450px]">
                 <ProjectCard 
                   index={i} 
                   title={proj.title} 
                   description={proj.desc} 
                   tags={proj.tags} 
+                  imageUrl={proj.imageUrl} 
                 />
               </div>
             ))}
