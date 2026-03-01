@@ -62,3 +62,23 @@ html {
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Ajusté pour un bouclage parfait */
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+  /* Les 3 lignes pour la fluidité mobile : */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Pause au survol (optionnel, mais propre) */
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}

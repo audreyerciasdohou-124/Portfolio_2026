@@ -42,7 +42,8 @@ export default function Home() {
     }
   ];
  
-  const duplicatedProjects = [...projects, ...projects, ...projects];
+  // On quadruple pour être sûr que le défilement est infini sans saut visuel
+  const duplicatedProjects = [...projects, ...projects, ...projects, ...projects];
  
   return (
     <main className="w-full overflow-hidden bg-[#2C2420]">
@@ -69,10 +70,20 @@ export default function Home() {
           <div className="h-1 w-10 bg-blue-600 rounded-full mt-3"></div>
         </div>
 
+        {/* Conteneur principal avec masque de débordement */}
         <div className="relative flex overflow-hidden">
-          <div className="flex animate-marquee gap-4 md:gap-10 py-6">
+          <div 
+            className="flex animate-marquee flex-nowrap gap-6 md:gap-10 py-6"
+            style={{ 
+              willChange: 'transform',
+              backfaceVisibility: 'hidden'
+            }}
+          >
             {duplicatedProjects.map((proj, i) => (
-              <div key={i} className="min-w-[280px] md:min-w-[450px]">
+              <div 
+                key={i} 
+                className="min-w-[280px] md:min-w-[450px] shrink-0" 
+              >
                 <ProjectCard 
                   index={i} 
                   title={proj.title} 
